@@ -2,82 +2,68 @@ syntax = "proto3";
 
 option go_package = "genproto/user";
 
-service UserService{
-    rpc CreateUser(CreateUserRequest) returns (CreateUserResponce){}
-    rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponce){}
-    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponce){}
-    rpc GetUserByID(GetUserByIDRequest) returns (GetUserByIDResponce){}
-    rpc GetUsers(Void) returns (GetUsersResponce){}
-
+service UserService {
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
+    rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
+    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
+    rpc GetUserByID(GetUserByIDRequest) returns (GetUserByIDResponse) {}
+    rpc GetUsers(Void) returns (GetUsersResponse) {}
 }
 
-message User{
+message User {
     string id = 1;
     string full_name = 2;
     string email = 3;
     string password = 4;
 }
 
-
-//CREATE
-message CreateUserRequest{
+// CREATE
+message CreateUserRequest {
     string full_name = 1;
     string email = 2;
     string password = 3;
 }
-message CreateUserResponce{
+message CreateUserResponse {
     string status = 1;
     string message = 2;
     User user = 3;
 }
 
-
-
-
-
-//UPDATE
-message UpdateUserRequest{
+// UPDATE
+message UpdateUserRequest {
     string id = 1;
     string full_name = 2;
     string email = 3;
     string password = 4;
 }
-message UpdateUserResponce{
-    string status = 1;
-    string messgae = 2;
-    User user = 3;
-}
-
-
-
-//DELETE
-message DeleteUserRequest{
-    string id = 1;
-}
-message DeleteUserResponce{
-    string status = 1;
-    string message = 2;
-}
-
-
-
-
-//GETUSERBYID
-message GetUserByIDRequest{
-    string id = 1;
-
-}
-message GetUserByIDResponce{
+message UpdateUserResponse {
     string status = 1;
     string message = 2;
     User user = 3;
 }
 
+// DELETE
+message DeleteUserRequest {
+    string id = 1;
+}
+message DeleteUserResponse {
+    string status = 1;
+    string message = 2;
+}
 
+// GETUSERBYID
+message GetUserByIDRequest {
+    string id = 1;
+}
+message GetUserByIDResponse {
+    string status = 1;
+    string message = 2;
+    User user = 3;
+}
 
 // GETUSERS 
-message GetUsersResponce{
+message GetUsersResponse {
     repeated User user = 1;
 }
 
-message Void{}
+message Void {}
