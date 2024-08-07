@@ -1,0 +1,114 @@
+syntax = "proto3";
+
+option go_package = "genproto/book";
+
+
+service BookService {
+    rpc CreateBook(CreateBookRequest) returns (CreateBookResponse) {}
+    rpc UpdateBook(UpdateBookRequest) returns (UpdateBookResponse) {}
+    rpc DeleteBook(DeleteBookRequest) returns (DeleteBookResponse) {}
+    rpc GetBookByID(GetBookByIDRequest) returns (GetBookByIDResponse) {}
+    rpc GetBooksByUser(GetBooksByUserRequest) returns (GetBooksByUserResponse) {}
+    rpc BuyBook(BuyBookRequest) returns (BuyBookResponse) {}
+    rpc BooksCount(Void) returns (BooksCountResponse) {}
+}
+
+
+message Book{
+    string id = 1;
+    string book_name = 2;
+    string book_price = 3;
+    string book_desc = 4;
+    string user_id = 5;
+}
+
+
+//CREATE
+message CreateBookRequest{
+    string book_name = 1;
+    string book_price = 2;
+    string book_desc = 3;
+}
+message CreateBookResponse {
+    string status = 1;
+    string message = 2;
+    Book book = 3;
+}
+
+// UPDATE
+message UpdateBookRequest {
+    string id = 1;
+    string book_name = 2;
+    string book_price = 3;
+    string book_desc = 4;
+}
+message UpdateBookResponse {
+    string status = 1;
+    string message = 2;
+    Book book = 3;
+}
+
+// DELETE
+message DeleteBookRequest {
+    string id = 1;
+}
+message DeleteBookResponse {
+    string status = 1;
+    string message = 2;
+}
+
+// GET BY ID
+message GetBookByIDRequest {
+    string id = 1;
+}
+message GetBookByIDResponse {
+    string status = 1;
+    string message = 2;
+    Book book = 3;
+}
+
+// GET BOOKS BY USER
+message GetBooksByUserRequest {
+    string user_id = 1;
+}
+message GetBooksByUserResponse {
+    repeated Book books = 1;
+}
+
+// BUY BOOK
+message BuyBookRequest {
+    string book_id = 1;
+    string user_id = 2;
+}
+message BuyBookResponse {
+    string status = 1;
+    string message = 2;
+    Book book = 3;
+}
+
+// BOOKS COUNT
+message BooksCountResponse {
+    int32 count = 1;
+}
+
+message Void {}
+
+
+
+
+// book_microsercie
+// id
+// book_name
+// book_price
+// book_desc
+// user_id = 0
+
+
+
+// create_user
+// update
+// delete
+// get by id
+// get users
+// buy book
+// booksCount
